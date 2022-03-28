@@ -17,11 +17,11 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 bootJar {
-	baseName = 'com-okta-springbootjpa'
+	baseName = 'com-ucf-event-springbootjpa'
 	version =  '0.1.0'
 }
 
-group = 'com.okta.springbootjpa'
+group = 'com.ucf.event.springbootjpa'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
