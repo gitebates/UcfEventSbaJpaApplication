@@ -4,7 +4,6 @@ package entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 import java.util.UUID;
 
@@ -12,8 +11,9 @@ import java.util.UUID;
 @Builder( toBuilder = true )
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity( name = "photo" )
-public class PhotoEntity {
+@Entity
+@Table(name = "PHOTO")
+public class Photo {
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
@@ -27,5 +27,8 @@ public class PhotoEntity {
     @Size( max = 100 )
     private String path;
 
+    @ManyToOne
+    @JoinColumn(name="UNIVERSITY_PHOTO")
+    private University university;
 
 }

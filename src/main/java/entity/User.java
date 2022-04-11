@@ -13,6 +13,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -20,8 +23,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Users_user")
-public class UserEntity {
+@Table(name = "USER")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -49,25 +52,29 @@ public class UserEntity {
     @Max(value = 254)
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    private UserLevel userLevel;
+//    //TODO: many-to-many
+//    @Enumerated(EnumType.STRING)
+//    private Set<UserLevel> userLevel;
 
     @Basic
     @Column(name = "university_id")
     private int universityId;
 
-    @Basic
-    @Column(name = "rso_id")
-    private UUID rsoId;
+    @ManyToMany(mappedBy="user")
+    private Set<Rso> rsos = new HashSet<>();
 
     @Column(name = "date_joined")
     @CreationTimestamp
     private Timestamp dateJoined;
 
-
     @Column(name = "last_login")
     @UpdateTimestamp
     private Timestamp lastLogin;
+
+    @Column(name = "USER_COMMENTS")
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
 
 
 }
